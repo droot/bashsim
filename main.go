@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"bashsim/llm"
-	"bashsim/session"
+	"github.com/droot/bashsim/llm"
+	"github.com/droot/bashsim/session"
 
 	"github.com/chzyer/readline"
 )

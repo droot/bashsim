@@ -4,7 +4,8 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"bashsim/session"
+
+	"github.com/droot/bashsim/session"
 
 	"google.golang.org/genai"
 )
