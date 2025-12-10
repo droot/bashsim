@@ -38,6 +38,47 @@ export GOOG_API_KEY="your-api-key-here"
 Start the simulator:
 ```bash
 ./bashsim
+bashsim$ kubectl get deployments
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   1/1     1            1           12s
+bashsim$ kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-574b87c764-x9z2p   1/1     Running   0          25s
+bashsim$ kubectl get pods --all-namespaces
+NAMESPACE     NAME                                      READY   STATUS    RESTARTS   AGE
+default       nginx-deployment-574b87c764-x9z2p         1/1     Running   0          45s
+kube-system   coredns-787d4945fb-k2j4l                  1/1     Running   0          2d
+kube-system   etcd-minikube                             1/1     Running   0          2d
+kube-system   kube-apiserver-minikube                   1/1     Running   0          2d
+kube-system   kube-controller-manager-minikube          1/1     Running   0          2d
+kube-system   kube-proxy-5j8r2                          1/1     Running   0          2d
+kube-system   kube-scheduler-minikube                   1/1     Running   0          2d
+kube-system   storage-provisioner                       1/1     Running   0          2d
+bashsim$ kubectl get ns
+NAME              STATUS   AGE
+default           Active   2d
+kube-node-lease   Active   2d
+kube-public       Active   2d
+kube-system       Active   2d
+bashsim$
+bashsim$
+bashsim$
+bashsim$ kubectl create ns ab
+namespace/ab created
+bashsim$ kubectl get ns ab -o yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2023-10-27T10:01:30Z"
+  name: ab
+  resourceVersion: "492"
+  uid: 84a3c1b2-d4e5-4f6a-9b8c-7d0e1f2a3b4c
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active
+bashsim$
 ```
 
 **Features:**
