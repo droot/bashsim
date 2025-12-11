@@ -41,13 +41,22 @@ func (c *Client) GenerateResponse(ctx context.Context, history []session.Entry, 
 	var contents []*genai.Content
 
 	for _, entry := range history {
+		userText := entry.Input
+		if userText == "" {
+			userText = " " // Should not happen for input usually, but safe guard
+		}
 		contents = append(contents, &genai.Content{
 			Role: "user",
-			Parts: []*genai.Part{{Text: entry.Input}},
+			Parts: []*genai.Part{{Text: userText}},
 		})
+
+		modelText := entry.Output
+		if modelText == "" {
+			modelText = " " // Replaced empty output with space to satisfy API
+		}
 		contents = append(contents, &genai.Content{
 			Role: "model",
-			Parts: []*genai.Part{{Text: entry.Output}},
+			Parts: []*genai.Part{{Text: modelText}},
 		})
 	}
 

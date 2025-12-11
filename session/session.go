@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 type Entry struct {
@@ -59,6 +60,10 @@ func New(path string) (*Session, error) {
 }
 
 func (s *Session) Append(input, output string) error {
+	if strings.TrimSpace(input) == "" && strings.TrimSpace(output) == "" {
+		return nil
+	}
+
 	entry := Entry{
 		Input:  input,
 		Output: output,
